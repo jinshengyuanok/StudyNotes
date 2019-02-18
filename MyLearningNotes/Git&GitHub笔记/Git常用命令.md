@@ -6,17 +6,11 @@
 
 1、初始化仓库
 
-
-
 ```shell
 git init
 ```
 
-
-
 2、将文件添加到仓库
-
-
 
 ```shell
 git add 文件名 # 将工作区的某个文件添加到暂存区
@@ -26,32 +20,20 @@ git add . # 将当前工作区的所有文件都加入暂存区
 git add -i # 进入交互界面模式，按需添加文件到缓存区
 ```
 
-
-
 3、将暂存区文件提交到本地仓库
-
-
 
 ```shell
 git commit -m "提交说明" # 将暂存区内容提交到本地仓库
 git commit -a -m "提交说明" # 跳过缓存区操作，直接把工作区内容提交到本地仓库
 ```
 
-
-
 4、查看仓库当前状态
-
-
 
 ```shell
 git status
 ```
 
-
-
 5、比较文件异同
-
-
 
 ```shell
 git diff # 工作区与暂存区的差异
@@ -66,11 +48,7 @@ git diff 分支A...分支B # 比较两分支在分开后各自的改动
 # 另外：如果只想统计哪些文件被改动，多少行被改动，可以添加 --stat 参数
 ```
 
-
-
 6、查看历史记录
-
-
 
 ```shell
 git log # 查看所有commit记录(SHA-A校验和，作者名称，邮箱，提交时间，提交说明)
@@ -86,11 +64,7 @@ git log -S查询内容 # 和--grep类似，S和查询内容间没有空格
 git log fileName # 查看某文件的修改记录，找背锅专用
 ```
 
-
-
-7、代码回滚
-
-
+7、码回滚
 
 ```shell
 git reset HEAD^ # 恢复成上次提交的版本
@@ -105,61 +79,37 @@ git reset --hard 版本号
 --hard：修改HEAD指针指向，暂存区内容丢失，工作区恢复以前状态；
 ```
 
-
-
 8、同步远程仓库
-
-
 
 ```shell
 git push -u origin master
 ```
 
-
-
 9、删除版本库文件
-
-
 
 ```shell
 git rm 文件名
 ```
 
-
-
 10、版本库里的版本替换工作区的版本
-
-
 
 ```shell
 git checkout -- test.txt
 ```
 
-
-
 11、本地仓库内容推送到远程仓库
-
-
 
 ```shell
 git remote add origin git@github.com:帐号名/仓库名.git
 ```
 
-
-
 12、从远程仓库克隆项目到本地
-
-
 
 ```shell
 git clone git@github.com:git帐号名/仓库名.git
 ```
 
-
-
 13、创建分支
-
-
 
 ```shell
 git checkout -b dev
@@ -169,66 +119,41 @@ git branch dev //创建分支
 git checkout dev //切换分支
 ```
 
-
-
 14、查看分支
-
-
 
 ```shell
 git branch
 ```
 
-
-
 15、合并分支
-
-
 
 ```shell
 git merge dev
 //用于合并指定分支到当前分支
-
 git merge --no-ff -m "merge with no-ff" dev
 //加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并
 ```
 
-
-
 16、删除分支
-
-
 
 ```shell
 git branch -d dev
 ```
 
-
-
 17、查看分支合并图
-
-
 
 ```shell
 git log --graph --pretty=oneline --abbrev-commit
 ```
 
-
-
 18、查看远程库信息
-
-
 
 ```shell
 git remote
 // -v 显示更详细的信息
 ```
 
-
-
 19、git相关配置
-
-
 
 ```shell
 # 安装完Git后第一件要做的事，设置用户信息(global可换成local在单独项目生效)：
@@ -245,22 +170,14 @@ git config --list  # 查看所有Git的配置(全局+本地+系统)
 git config --global color.ui true //显示git相关颜色
 ```
 
-
-
 20、撤消某次提交
-
-
 
 ```shell
 git revert HEAD # 撤销最近的一个提交
 git revert 版本号 # 撤销某次commit
 ```
 
-
-
 21、拉取远程分支到本地仓库
-
-
 
 ```shell
 git checkout -b 本地分支 远程分支 # 会在本地新建分支，并自动切换到该分支
@@ -268,11 +185,7 @@ git fetch origin 远程分支:本地分支 # 会在本地新建分支，但不�
 git branch --set-upstream 本地分支 远程分支 # 建立本地分支与远程分支的链接
 ```
 
-
-
 22、标签命令
-
-
 
 ```shell
 git tag 标签 //打标签命令，默认为HEAD
@@ -281,11 +194,7 @@ git tag 标签 �版本号 //给某个commit版本添加标签
 git show 标签 //显示某个标签的详细信息
 ```
 
-
-
 23、同步远程仓库更新
-
-
 
 ```shell
 git fetch  origin master

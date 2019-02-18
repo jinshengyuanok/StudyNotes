@@ -1,6 +1,16 @@
-# git&getHub
+# gitAndgitHub
 
 是什么？
+
+官网：https://git-scm.com/
+
+官网介绍：
+
+> Git--distributed-is-the-new-centralized
+>
+> Git is a [free and open source](https://git-scm.com/about/free-and-open-source) distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+>
+> Git is [easy to learn](https://git-scm.com/doc) and has a [tiny footprint with lightning fast performance](https://git-scm.com/about/small-and-fast). It outclasses SCM tools like Subversion, CVS, Perforce, and ClearCase with features like [cheap local branching](https://git-scm.com/about/branching-and-merging), convenient [staging areas](https://git-scm.com/about/staging-area), and [multiple workflows](https://git-scm.com/about/distributed).
 
 Git(读音为/gɪt/)是一个开源的**分布式版本控制系统**，可以有效、高速地处理从很小到非常大的项目版本管理。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。
 
@@ -8,7 +18,7 @@ Torvalds 开始着手开发 Git 是为了作为一种过渡方案来替代 BitKe
 
 ## 1.下载安装
 
-官网：https://www.git-scm.com/download/
+官网下载地址：https://www.git-scm.com/download/
 
 ### 0.windows版本安装
 
@@ -211,7 +221,64 @@ e22c44f test文件第二版提交
 
 
 
+## 3.Git远程仓库操作
 
+1. 创建远程仓库地址别名
+
+- 查看所有远程库地址别名
+
+```shell
+git remote -v 
+```
+
+- 创建远程库地址并指定别名
+
+```shell
+git remote add [别名] GitHub地址，如
+git remote add origin https://github.com/userName/xxx.git
+```
+
+2. 将本地仓库中的分支推送至GitHub上
+
+```shell
+git push [别名]/[远程库地址] [分支]
+git push origin master 
+```
+
+3. 将GitHub上的地址克隆到本地仓库
+
+```shell
+git clone [远程库地址]
+git clone https://github.com/userName/xxx.git
+```
+
+- 如果我们需要克隆到指定的目录，可以使用以下命令格式：
+
+```shell
+git clone [远程仓库地址] [本地目录]
+```
+
+
+
+- 注意，如果不指定别名，从GitHub中clone远程仓库时，默认的别名就是origin，如
+
+```shell
+git clone https://github.com/userName/xxx.git
+```
+
+4. 拉取
+
+```shell
+git pull [远程库地址或别名] [远程分支]
+git pull origin master
+
+git fetch [远程库地址或别名] [远程分支]
+
+git merge [远程库地址或别名] [远程分支]
+
+pull = fetch + merge
+
+```
 
 
 
