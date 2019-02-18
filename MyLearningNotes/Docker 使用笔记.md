@@ -68,7 +68,7 @@ rm -rf /var/lib/docker
 
 ## 二.docker常用命令操作
 
-### docker ps:列出容器
+### 1. docker ps:列出容器
 
 ``` shell
 1.镜像搜索(搜索出的列表其实就是docker hub 上的镜像列表)：
@@ -95,7 +95,7 @@ OPTIONS说明：
 
 ```
 
-### 启动、停止、删除已经运行过的docker容器及镜像
+### 2.启动、停止、删除已经运行过的docker容器及镜像
 
 ``` shell
 一、创建
@@ -140,11 +140,11 @@ docker rm [NAME]/[CONTAINER ID]:不能够删除一个正在运行的容器，会
 
 一次性删除：docker本身没有提供一次性删除操作，但是可以使用如下命令实现：
 docker rm 'docker ps -a -q'：-a标志列出所有容器，-q标志只列出容器的ID，然后传递给rm命令，依次删除容器。
-
+或 docker rm $(docker ps -a -q);
 六、删除镜像：docker rmi [images id]
 ```
 
-## Docker与宿主主机之间的文件拷贝
+### 3.Docker与宿主主机之间的文件拷贝
 
 ```shell
 从主机复制到容器sudo docker cp host_path containerID:container_path
@@ -171,9 +171,10 @@ docker pull mysql:5.7.24  --安装版本为5.7.24的mysql
 ``` shell
 docker run -d --name mysql7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=yuan mysql:5.7.24
 【注:这条命令的意思是：
-    1.以后台方式运行mysql 5.7.24版本,且取名为mysql7；
-    2.将主机(宿主)的3306端口映射到docker容器中的3306端口；
+    1. -d 以守护进程模式运行(就是后台运行)后台方式运行mysql 5.7.24版本,且取名为mysql7；
+    2. -p 将主机(宿主)的3306端口映射到docker容器中的3306端口；   
     3.初始root默默为yuan;
+    4. docker run -d --name mysql7 -P mysql  这里的大写P指的是默认宿主机随机分配端口并映射到mysql的3306端口上
     *****此命令执行后直接注册到后台服务中，下次开机后只需要启动docker镜像即可，参见下文4*****
    】
 ```
@@ -200,7 +201,7 @@ log-bin=mysql-bin
 
 ``` shell
 1.进入容器
-docker exec - it mysql7 bash
+docker exec - it mysql7 /bin/bash   --注：/bin/bash可省略，默认就是/bin/bash
 【注：mysql7为运行容器时的指定的mysql名称】
 2.登陆mysql
 mysql -u root -p 回车
