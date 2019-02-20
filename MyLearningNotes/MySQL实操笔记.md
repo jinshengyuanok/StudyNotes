@@ -199,7 +199,7 @@ slave会从master读取binlog来进行数据同步，三步骤：
 
 ## 3.复制的最大问题--延时
 
-## 4. 一主一从常见配置
+## 4. 一主一从常见配置(MySQL 5.7.x)
 
 要求：
 
@@ -448,7 +448,7 @@ Query OK, 0 rows affected (0.03 sec)
 13. 再次查看slave状态；
 
 ```mysql
-
+show slave status\G;
 ```
 
 14. 停止主从复制
@@ -501,5 +501,46 @@ Query OK, 0 rows affected, 2 warnings (0.07 sec)
 mysql> 
 ```
 
+## 5.一主一从常见配置(MySQL 8.0.x)
 
+- 大部分配置跟5.7.x版本无区别，主要区别在于主机(master)创建用户与授权上
+
+### 1. 主机配置
+
+1. 创建用户
+
+```mysql
+mysql> create user 'wei'@'192.168.31.200'identified by 'wei';
+Query OK, 0 rows affected (0.09 sec)
+```
+
+2. 授权
+
+```mysql
+mysql> grant replication slave on *.* to 'wei'@'192.168.31.200';
+Query OK, 0 rows affected (0.04 sec)
+```
+
+3. 刷新权限
+
+```mysql
+mysql> flush privileges;
+Query OK, 0 rows affected (0.18 sec)
+```
+
+4. 查看master状态
+
+```mysql
+mysql> show master status;
++-----------------+----------+--------------+------------------+-------------------+
+| File            | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++-----------------+----------+--------------+------------------+-------------------+
+| mysqlbin.000002 |      879 |              | mysql            |                   |
++-----------------+----------+--------------+------------------+-------------------+
+1 row in set (0.00 sec)
+```
+
+### 2. 从机配置
+
+- 从机配置更5.7.x版本无区别,这里直接省略
 
